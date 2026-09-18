@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/copy-wasm.mjs && next dev",
+    "build": "node scripts/copy-wasm.mjs && next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx scripts/test-guard.ts && tsx scripts/test-infer.ts && tsx scripts/test-prompt.ts && tsx scripts/test-e2e.mts"
+    "test": "tsx scripts/test-guard.ts && tsx scripts/test-infer.ts && tsx scripts/test-prompt.ts && tsx scripts/test-e2e.mts",
+    "prepare:wasm": "node scripts/copy-wasm.mjs",
+    "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "next": "16.3.5",
@@ -28,6 +30,7 @@
     "@types/sql.js": "^1.4.11",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "playwright": "^1.63.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.13",
     "typescript": "^5"

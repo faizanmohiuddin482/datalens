@@ -17,6 +17,15 @@ const HIGHLIGHT = "#ffd400";
 const fmt = (v: unknown) =>
   typeof v === "number" ? v.toLocaleString(undefined, { maximumFractionDigits: 2 }) : String(v ?? "");
 
+/**
+ * Axis ticks get compact notation — 2.7M rather than 2,671,529.41. A monospace
+ * seven-digit tick does not fit the gutter and gets clipped to nonsense.
+ */
+const tick = (v: unknown) =>
+  typeof v === "number" && Math.abs(v) >= 10_000
+    ? v.toLocaleString(undefined, { notation: "compact", maximumFractionDigits: 1 })
+    : fmt(v);
+
 export default function ResultChart({ spec, result }: { spec: ChartSpec; result: QueryResult }) {
   const xi = result.columns.indexOf(spec.x);
   const yis = spec.y.map((c) => result.columns.indexOf(c)).filter((i) => i >= 0);
@@ -67,7 +76,7 @@ export default function ResultChart({ spec, result }: { spec: ChartSpec; result:
             <LineChart data={data} margin={{ top: 6, right: 10, bottom: 4, left: 0 }}>
               {grid}
               <XAxis dataKey={spec.x} {...axis} tickMargin={8} />
-              <YAxis {...axis} tickFormatter={fmt} width={64} />
+              <YAxis {...axis} tickFormatter={tick} width={72} />
               {tip}
               {!single && <Legend wrapperStyle={{ fontSize: 11, fontFamily: "var(--font-plex-mono)" }} />}
               {spec.y.map((c, i) => (
@@ -91,7 +100,7 @@ export default function ResultChart({ spec, result }: { spec: ChartSpec; result:
                 textAnchor={wide ? "end" : "middle"}
                 height={wide ? 68 : 32}
               />
-              <YAxis {...axis} tickFormatter={fmt} width={64} />
+              <YAxis {...axis} tickFormatter={tick} width={72} />
               {tip}
               {!single && <Legend wrapperStyle={{ fontSize: 11, fontFamily: "var(--font-plex-mono)" }} />}
               {spec.y.map((c, i) => (

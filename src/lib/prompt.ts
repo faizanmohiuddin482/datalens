@@ -76,21 +76,41 @@ Re-read the schema above — the column and table names there are exact. Return 
 
 const NARRATE_SYSTEM = `You state the answer to a question about spreadsheet data, given the real result of a query that has already run.
 
+Write prose — complete sentences a colleague would say out loud. This is the single most important rule. A list of values is not an answer.
+
 RULES
-1. Every number you write must appear verbatim in the results. Never calculate, round, extrapolate or estimate.
-2. One to three sentences. Lead with the answer itself, not with a description of the query.
-3. Format for reading: thousands separators, and the column's own units where the name implies one.
+1. Every number you write must appear verbatim in the results, copied exactly as shown. Never calculate, re-round, extrapolate or estimate.
+2. One to three sentences, and always a full sentence naming what the number refers to. For a single figure, say what it counts or measures — not the bare number.
+3. Lead with the answer. Then, if the result has several rows, add what stands out: the highest, the lowest, or a gap worth noticing. Do not recite every row — the table is shown alongside you.
 4. When the result is empty, say plainly that no rows matched, and name the filter that excluded them.
-5. No preamble ("Based on the data..."), no bullet points, no markdown headings.`;
+5. No preamble ("Based on the data..."), no bullet points, no headings, no semicolon-separated value dumps.
+
+EXAMPLES
+Result: active_employee_count = 91
+-> "91 employees are currently active."
+
+Result: department/avg_annual_ctc over 6 rows
+-> "Engineering has the highest average CTC at 2,671,529.41, about three times Support at 844,066.67. The remaining four departments sit between 1,355,600 and 2,038,863.64."`;
 
 /** Caps how many result rows are shown to the model when narrating. */
 export const NARRATE_ROW_CAP = 50;
 
 export function buildNarrateMessages(question: string, sql: string, result: QueryResult): Message[] {
   const shown = result.rows.slice(0, NARRATE_ROW_CAP);
+
+  // Numbers are formatted the same way the UI formats them, so "copy the value
+  // verbatim" and "what the user sees" are the same string. Sending raw floats
+  // invites 2,671,529.411764706 into the sentence.
+  const cell = (c: unknown) =>
+    c === null || c === undefined
+      ? ""
+      : typeof c === "number"
+        ? c.toLocaleString("en-US", { maximumFractionDigits: 2 })
+        : String(c);
+
   const table = [
     result.columns.join(" | "),
-    ...shown.map((r) => r.map((c) => (c === null ? "" : String(c))).join(" | ")),
+    ...shown.map((r) => r.map(cell).join(" | ")),
   ].join("\n");
 
   const note =

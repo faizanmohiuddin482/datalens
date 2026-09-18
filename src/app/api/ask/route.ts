@@ -76,26 +76,19 @@ export async function POST(req: Request) {
     const llm = provider();
 
     if (body.mode === "narrate") {
-      const text = await llm.complete(
+      // Plain prose, not JSON — this call is asking for the sentence itself.
+      const answer = await llm.complete(
         buildNarrateMessages(body.question, body.sql, body.result),
         { temperature: 0.2 },
       );
-      // The narration prompt asks for a sentence, but json_object mode means it
-      // may arrive wrapped. Accept either.
-      let answer = text.trim();
-      try {
-        const obj = JSON.parse(answer) as Record<string, unknown>;
-        const first = Object.values(obj).find((v) => typeof v === "string");
-        if (typeof first === "string") answer = first;
-      } catch { /* plain text is fine */ }
-      return NextResponse.json({ answer, model: llm.model });
+      return NextResponse.json({ answer: answer.trim(), model: llm.model });
     }
 
     const base = buildPlanMessages(body.tables, body.joins ?? [], body.question);
     const messages =
       body.mode === "repair" ? buildRepairMessages(base, body.sql, body.error) : base;
 
-    const raw = await llm.complete(messages);
+    const raw = await llm.complete(messages, { json: true });
     return NextResponse.json({ plan: parsePlan(raw), model: llm.model });
   } catch (e) {
     if (e instanceof MissingCredentialsError) {

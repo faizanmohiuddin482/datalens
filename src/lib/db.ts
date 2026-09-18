@@ -22,7 +22,15 @@ let sqlPromise: Promise<SqlJsStatic> | null = null;
 export type LocateFile = (file: string) => string;
 
 function getSqlJs(locateFile: LocateFile): Promise<SqlJsStatic> {
-  sqlPromise ??= initSqlJs({ locateFile });
+  // Caching a *rejected* promise would make one transient failure permanent for
+  // the life of the tab, so a failed load clears the cache and can be retried.
+  sqlPromise ??= initSqlJs({ locateFile }).catch((e) => {
+    sqlPromise = null;
+    throw new Error(
+      `Could not start the in-browser database: ${e instanceof Error ? e.message : String(e)}. ` +
+      "The SQLite WebAssembly module failed to load — check that /sql-wasm.wasm is being served.",
+    );
+  });
   return sqlPromise;
 }
 
