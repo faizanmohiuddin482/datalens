@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "tsx scripts/test-guard.ts && tsx scripts/test-infer.ts && tsx scripts/test-prompt.ts && tsx scripts/test-export.ts && tsx scripts/test-e2e.mts",
     "prepare:wasm": "node scripts/copy-wasm.mjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "test:acceptance": "node scripts/test-acceptance.mjs"
   },
   "dependencies": {
     "next": "16.3.5",
