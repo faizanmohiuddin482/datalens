@@ -11,12 +11,18 @@ link.
 
 ## Decision
 
-Use **Llama 3.3 70B** — an open-weight model — served by **Groq**, and put the
-call behind a one-method adapter interface so the provider is an environment
-variable rather than a code change. **Ollama** is supported as the local,
-fully-offline path using the same interface.
+Use an **open-weight model served by Groq**, behind a one-method adapter
+interface so the provider is an environment variable rather than a code change.
+**Ollama** is supported as the local, fully-offline path through the same
+interface.
 
-The task is constrained enough — schema in, JSON with SQL out — that a 70B
+The model is `openai/gpt-oss-120b` — open weights under Apache 2.0, chosen from
+what the account actually serves. The first choice, Llama 3.3 70B, turned out not
+to be available on the key in use; because the model id is configuration, that
+was a one-line change rather than a rework, which is the adapter earning its
+keep on day one.
+
+The task is constrained enough — schema in, JSON with SQL out — that an
 open-weight model is not a compromise for it.
 
 ## Consequences
@@ -47,3 +53,10 @@ open-weight model is not a compromise for it.
   a direct violation of the brief.
 - **A small local model (7B class).** Attractive for latency and privacy, but
   noticeably weaker at multi-table joins, which is the criterion under test.
+  Still available through the Ollama path for anyone who needs it.
+
+## Note
+
+Pinning a model id in code would have made an unavailable model a code change.
+Because the id is an environment variable with a default, discovering that Llama
+3.3 was not served cost one line — the argument for the adapter, made concrete.

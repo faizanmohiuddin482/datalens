@@ -62,3 +62,9 @@ npm run lint
 Commits are [Conventional Commits](https://conventionalcommits.org) and scoped
 to one concern. A decision that shapes the code gets an ADR in the same commit
 as the code that implements it.
+
+Anything a user would notice — a new capability, a changed behaviour, a fixed
+defect — gets a line under `## [Unreleased]` in `CHANGELOG.md`, in the same
+commit. Write it for someone using the app, not someone reading the diff, and
+link the ADR rather than restating its reasoning. Refactors, test-only changes
+and docs do not get an entry.

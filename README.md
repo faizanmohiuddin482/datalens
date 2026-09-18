@@ -40,7 +40,7 @@ MODEL_PROVIDER=ollama
 |---|---|---|
 | App | Next.js 16, React 19, TypeScript (strict) | One deploy serves both the UI and the single API route |
 | Query engine | SQLite via `sql.js` (WebAssembly), in-browser | Full SQL without a server; data stays on the user's machine ([ADR 0001](docs/adr/0001-sqlite-in-the-browser.md)) |
-| Model | Llama 3.3 70B (open weights) on Groq, or Ollama locally | Open-weight as the brief requires, behind a one-method adapter ([ADR 0005](docs/adr/0005-open-weight-model-behind-adapter.md)) |
+| Model | `gpt-oss-120b` (open weights, Apache 2.0) on Groq, or Ollama locally | Open-weight as the brief requires, behind a one-method adapter ([ADR 0005](docs/adr/0005-open-weight-model-behind-adapter.md)) |
 | Parsing | PapaParse (CSV), SheetJS (Excel) | Multi-sheet workbooks become one table per sheet |
 | Charts | Recharts | Rendered only when the question implies a comparison or trend |
 | Styling | Tailwind v4 + semantic tokens | The visual system is swappable in one file ([design system](docs/design-system.md)) |
