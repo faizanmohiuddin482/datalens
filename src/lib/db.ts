@@ -16,9 +16,13 @@ import type { QueryResult, TableProfile } from "./types";
 
 let sqlPromise: Promise<SqlJsStatic> | null = null;
 
-function getSqlJs(): Promise<SqlJsStatic> {
-  // Relative to the deployed origin, so localhost and Vercel behave the same.
-  sqlPromise ??= initSqlJs({ locateFile: (f) => `/${f}` });
+/** Where the .wasm lives. Relative to the origin, so localhost and the deployed
+ *  domain behave identically. Overridable so the pipeline can be exercised in
+ *  Node, without a browser, by scripts/test-e2e.ts. */
+export type LocateFile = (file: string) => string;
+
+function getSqlJs(locateFile: LocateFile): Promise<SqlJsStatic> {
+  sqlPromise ??= initSqlJs({ locateFile });
   return sqlPromise;
 }
 
@@ -37,8 +41,8 @@ export class Workspace {
   /** Columns whose date format was genuinely ambiguous, for the UI to disclose. */
   warnings: string[] = [];
 
-  static async create(): Promise<Workspace> {
-    const SQL = await getSqlJs();
+  static async create(locateFile: LocateFile = (f) => `/${f}`): Promise<Workspace> {
+    const SQL = await getSqlJs(locateFile);
     const ws = new Workspace();
     ws.db = new SQL.Database();
     return ws;

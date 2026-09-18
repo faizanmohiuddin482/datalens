@@ -1,4 +1,4 @@
-import { guard, stripLiteralsAndComments } from "../src/lib/sql-guard";
+import { guard } from "../src/lib/sql-guard";
 
 const cases: [string, boolean, string][] = [
   ["SELECT 1", true, "plain select"],

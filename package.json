@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx scripts/test-guard.ts && tsx scripts/test-infer.ts && tsx scripts/test-prompt.ts"
+    "test": "tsx scripts/test-guard.ts && tsx scripts/test-infer.ts && tsx scripts/test-prompt.ts && tsx scripts/test-e2e.mts"
   },
   "dependencies": {
     "next": "16.3.5",
