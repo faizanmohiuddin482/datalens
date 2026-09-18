@@ -18,6 +18,28 @@ Your data never leaves your browser. SQLite is compiled to WebAssembly and runs
 in the tab; only the schema — column names, types, and the value lists of small
 categorical columns — is sent to the model.
 
+## If you have five minutes
+
+Open the live link and click **Load sample HR data** — three related files load,
+nothing to download. Then:
+
+1. **"What is the average annual CTC by department?"** — this spans two files.
+   Nothing told the app how they relate; the join key was found by comparing
+   actual values, and the confidence is shown in the sidebar under *Detected
+   relationships*.
+2. **Click "Show the query"** on the answer. Every number in the app was computed
+   by SQLite from your rows — the model wrote the query, not the figure.
+3. **"How many employees joined each year? Show the trend."** — the chart type
+   follows from the question, and the dates were day-first (`06/02/2023`) in the
+   file and normalised on the way in.
+4. **"how is it doing?"** — deliberately vague. It asks what you mean instead of
+   answering confidently.
+5. **Download CSV** on any answer, if you want the rows.
+
+To see the type handling do real work, upload your own export with currency
+symbols, percentages or `N/A` cells — those are parsed rather than dropped, and
+any assumption the app had to make is stated in the sidebar.
+
 ## Quick start
 
 ```bash
