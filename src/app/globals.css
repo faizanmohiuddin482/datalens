@@ -1,50 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fbfbfa;
-  --surface: #ffffff;
-  --border: #e6e5e1;
-  --foreground: #1b1a17;
-  --muted: #6f6d66;
-  --accent: #2f6f4f;
-  --accent-soft: #eaf2ed;
-  --danger: #a33a2c;
-  --code-bg: #f6f5f2;
-}
+/* ---------------------------------------------------------------------------
+   Sync design system — tokens (see docs/design-system-source.md, B1).
+   Light is the only theme: the system is defined on a white ground with a
+   graph-paper grid, and a dark variant would break the pixel-terminal read.
+   --------------------------------------------------------------------------- */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #16161a;
-    --surface: #1e1e23;
-    --border: #32323a;
-    --foreground: #eceae4;
-    --muted: #9a978f;
-    --accent: #6cc79a;
-    --accent-soft: #23342c;
-    --danger: #e08a7c;
-    --code-bg: #26262c;
-  }
+:root {
+  --bg: #ffffff;
+  --grid: #dce6ff;
+  --ink: #0b1020;
+  --ink-mute: #5b6472;
+  --blue: #2f5bff;
+  --blue-tint: #eaf0ff;
+  --yellow: #ffd400;
+  --ink-inverse: #ffffff;
+  --ok: #1db954;
+  --warn: #e8590c;
+
+  /* Grid & surface */
+  --radius: 0px;
+  --frame: 2px;
+  --space: 8px;
+  --grid-size: 24px;
+  --grid-line: color-mix(in srgb, var(--grid) 30%, transparent);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-border: var(--border);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-danger: var(--danger);
-  --color-code-bg: var(--code-bg);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-ink-mute: var(--ink-mute);
+  --color-blue: var(--blue);
+  --color-blue-tint: var(--blue-tint);
+  --color-yellow: var(--yellow);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-grid: var(--grid);
+  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-playfair);
+  --radius-none: 0px;
 }
 
+/* Graph paper, behind everything. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(to right, var(--grid-line) 0 1px, transparent 1px var(--grid-size)),
+    repeating-linear-gradient(to bottom, var(--grid-line) 0 1px, transparent 1px var(--grid-size));
+  color: var(--ink);
+  font-family: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
-/* Result tables scroll on their own rather than widening the page. */
+/* Square corners everywhere — no exceptions, no shadows. */
+*, *::before, *::after { border-radius: 0 !important; box-shadow: none !important; }
+
+/* Focus is yellow, per the accent rule. */
+:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+/* --- The framed window -----------------------------------------------------
+   Every container is a 2px ink frame. Elevation is expressed as a second,
+   inset 1px frame rather than a shadow. */
+.frame {
+  border: var(--frame) solid var(--ink);
+  background: var(--bg);
+}
+.frame-double { position: relative; }
+.frame-double::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--ink);
+  pointer-events: none;
+}
+
+/* --- Motion: stepped, never eased ------------------------------------------ */
+.step-in { transition: background-color 120ms steps(3), color 120ms steps(3), border-color 120ms steps(3); }
+
+@keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+.cursor-blink { animation: blink 1s steps(1) infinite; }
+
+/* Chunked progress: fills in visible blocks, not a smooth sweep. */
+@keyframes chunk { from { background-position-x: 0 } to { background-position-x: 16px } }
+.chunked {
+  background-image: repeating-linear-gradient(
+    90deg, var(--yellow) 0 8px, transparent 8px 16px
+  );
+  animation: chunk 600ms steps(2) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink, .chunked { animation: none; }
+  .step-in { transition: none; }
+}
+
+/* Tables and code scroll inside themselves, never widening the page. */
 .scroll-x { overflow-x: auto; }

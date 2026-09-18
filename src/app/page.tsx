@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import AnswerCard from "@/components/AnswerCard";
+import { Button, Chip, Field, Spinner, Text } from "@/components/ui";
 import SchemaPanel from "@/components/SchemaPanel";
 import Uploader from "@/components/Uploader";
 import { Workspace } from "@/lib/db";
@@ -103,12 +104,14 @@ export default function Home() {
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-      <header className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight">DataLens</h1>
-        <p className="mt-1 text-sm text-muted">
-          Ask your spreadsheets a question. The model writes the query; SQLite in
-          your browser computes the answer.
-        </p>
+      {/* Nav bar: mono caps, letter-spaced, active item underlined in yellow. */}
+      <header className="mb-8 flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-ink pb-3">
+        <Text as="h1" role="h1">
+          Data<span className="border-b-4 border-yellow">lens</span>
+        </Text>
+        <Text role="caption" className="max-w-sm sm:text-right">
+          The model writes the query · SQLite in your browser computes the answer
+        </Text>
       </header>
 
       {!ready ? (
@@ -120,44 +123,29 @@ export default function Home() {
               onSubmit={(e) => { e.preventDefault(); void submit(question); }}
               className="flex gap-2"
             >
-              <input
+              <Field
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 placeholder="Ask anything about the data you loaded…"
                 disabled={loading}
-                className="min-w-0 flex-1 rounded-lg border border-border bg-surface px-4 py-2.5 text-sm outline-none placeholder:text-muted focus:border-accent disabled:opacity-60"
+                aria-label="Your question"
               />
-              <button
-                type="submit"
-                disabled={loading || !question.trim()}
-                className="shrink-0 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white disabled:opacity-40 hover:opacity-90"
-              >
+              <Button type="submit" size="lg" className="shrink-0" disabled={loading || !question.trim()}>
                 Ask
-              </button>
+              </Button>
             </form>
 
             {outcomes.length === 0 && !loading && (
               <div className="flex flex-wrap gap-2">
                 {STARTERS.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => void submit(s)}
-                    className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-muted hover:border-accent hover:text-foreground"
-                  >
-                    {s}
-                  </button>
+                  <Chip key={s} onClick={() => void submit(s)}>{s}</Chip>
                 ))}
               </div>
             )}
 
-            {stage && (
-              <p className="flex items-center gap-2 text-sm text-muted">
-                <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
-                {STAGE_LABEL[stage]}…
-              </p>
-            )}
+            {stage && <Spinner label={STAGE_LABEL[stage]} />}
 
-            {problem && <p className="text-sm text-danger">{problem}</p>}
+            {problem && <Text role="body" tone="warn">{problem}</Text>}
 
             {outcomes.map((o, i) => (
               <AnswerCard key={outcomes.length - i} outcome={o} onAsk={(q) => void submit(q)} />
@@ -171,9 +159,11 @@ export default function Home() {
         </div>
       )}
 
-      <footer className="mt-16 border-t border-border pt-4 text-xs text-muted">
-        Your files stay in this tab. Only column names, types and the distinct
-        values of small categorical columns are sent to the model.
+      <footer className="mt-16 border-t-2 border-ink pt-3">
+        <Text role="caption">
+          Your files stay in this tab. Only column names, types and the distinct
+          values of small categorical columns are sent to the model.
+        </Text>
       </footer>
     </div>
   );

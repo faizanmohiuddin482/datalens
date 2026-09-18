@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button, Text, cx } from "./ui";
 import type { QueryResult } from "@/lib/types";
 
 const PAGE = 12;
@@ -16,25 +17,27 @@ export default function ResultTable({ result }: { result: QueryResult }) {
   const rows = showAll ? result.rows : result.rows.slice(0, PAGE);
 
   if (result.rows.length === 0) {
-    return <p className="mt-3 text-sm text-muted">The query ran and matched no rows.</p>;
+    return <Text role="body" tone="mute" className="mt-4">The query ran and matched no rows.</Text>;
   }
 
   return (
-    <div className="mt-3">
-      <div className="scroll-x rounded-lg border border-border">
+    <div className="mt-4">
+      <div className="scroll-x frame">
         <table className="w-full min-w-max text-left text-xs">
-          <thead className="bg-code-bg">
+          <thead className="border-b-2 border-ink bg-blue-tint">
             <tr>
               {result.columns.map((c) => (
-                <th key={c} className="whitespace-nowrap px-3 py-2 font-mono font-medium">{c}</th>
+                <th key={c} scope="col" className="whitespace-nowrap px-3 py-2 text-[11px] font-bold uppercase tracking-[0.06em]">
+                  {c}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((r, i) => (
-              <tr key={i} className="border-t border-border">
+              <tr key={i} className={cx(i > 0 && "border-t border-grid")}>
                 {r.map((c, j) => (
-                  <td key={j} className={`whitespace-nowrap px-3 py-1.5 ${typeof c === "number" ? "tabular-nums" : ""}`}>
+                  <td key={j} className={cx("whitespace-nowrap px-3 py-1.5", typeof c === "number" && "tabular-nums")}>
                     {fmt(c)}
                   </td>
                 ))}
@@ -44,15 +47,12 @@ export default function ResultTable({ result }: { result: QueryResult }) {
         </table>
       </div>
 
-      <p className="mt-2 text-xs text-muted">
-        {result.rows.length.toLocaleString()} row{result.rows.length === 1 ? "" : "s"}
-        {result.truncated && " (capped)"} · {result.elapsedMs} ms
-        {result.rows.length > PAGE && (
-          <button onClick={() => setShowAll(!showAll)} className="ml-2 underline hover:text-foreground">
-            {showAll ? "show fewer" : `show all ${result.rows.length.toLocaleString()}`}
-          </button>
-        )}
-      </p>
+      {result.rows.length > PAGE && (
+        <Button tone="link" size="sm" className="mt-2" onClick={() => setShowAll(!showAll)}>
+          {showAll ? "show fewer" : `show all ${result.rows.length.toLocaleString()} rows`}
+        </Button>
+      )}
+      {result.truncated && <Text role="caption" className="mt-2">Result capped at the row limit.</Text>}
     </div>
   );
 }
