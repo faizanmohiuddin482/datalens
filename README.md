@@ -20,14 +20,16 @@ categorical columns — is sent to the model.
 
 ## Watch it work
 
-https://github.com/faizanmohiuddin482/datalens/raw/main/docs/media/demo.webm
+![Asking for average CTC by department — the answer, the chart, and the cross-file SQL behind it](docs/media/demo.gif)
 
-Forty-five seconds, recorded against the live deployment: three related files
-loaded together, a question that silently spans two of them, the SQL behind the
-number, a trend, and a vague question that gets challenged rather than answered.
+Full recording, forty-five seconds, against the live deployment:
+**[mp4](docs/media/demo.mp4)** · **[webm](docs/media/demo.webm)** — three related
+files loaded together, a question that silently spans two of them, the SQL behind
+the number, a trend over time, and a vague question that gets challenged rather
+than answered.
 
 The recording is itself produced by driving the app (`npm run demo`), not by a
-screen recorder — so it can be re-made after any change instead of re-filmed.
+screen recorder, so it can be re-made after any change instead of re-filmed.
 
 ## If you have five minutes
 
