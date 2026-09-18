@@ -18,6 +18,17 @@ Your data never leaves your browser. SQLite is compiled to WebAssembly and runs
 in the tab; only the schema — column names, types, and the value lists of small
 categorical columns — is sent to the model.
 
+## Watch it work
+
+https://github.com/faizanmohiuddin482/datalens/raw/main/docs/media/demo.webm
+
+Forty-five seconds, recorded against the live deployment: three related files
+loaded together, a question that silently spans two of them, the SQL behind the
+number, a trend, and a vague question that gets challenged rather than answered.
+
+The recording is itself produced by driving the app (`npm run demo`), not by a
+screen recorder — so it can be re-made after any change instead of re-filmed.
+
 ## If you have five minutes
 
 Open the live link and click **Load sample HR data** — three related files load,
@@ -126,7 +137,8 @@ npm run demo -- https://your-deployment.vercel.app ~/Desktop
 
 Drives the real app in a real browser and records it, with a synthetic cursor so
 it reads as a walkthrough. No screen recorder, no desktop clutter, and it can be
-re-run after any change rather than re-filmed.
+re-run after any change rather than re-filmed. The result is
+[`docs/media/demo.webm`](docs/media/demo.webm).
 
 ## Tests
 
