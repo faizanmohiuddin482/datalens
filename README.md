@@ -200,4 +200,5 @@ scripts/      test runners · sample data generators
   of each stated plainly
 - [Design system](docs/design-system.md) — how the visual language is applied
 - [Write-up](docs/writeup.md) — approach, key decisions, what's next
+  ([PDF](docs/writeup.pdf), regenerate with `npm run writeup:pdf`)
 - [CLAUDE.md](CLAUDE.md) — the invariant, and the rules for working in this repo
