@@ -2,7 +2,8 @@
 
 import ResultChart from "./ResultChart";
 import ResultTable from "./ResultTable";
-import { Chip, Code, Disclosure, Frame, FrameFooter, Mark, Receipt, Text } from "./ui";
+import { Button, Chip, Code, Disclosure, Frame, FrameFooter, Mark, Receipt, Text } from "./ui";
+import { download } from "@/lib/export";
 import type { Answer, Clarification, Failure, Outcome } from "@/lib/pipeline";
 
 /**
@@ -83,13 +84,25 @@ function ResultCard({ outcome }: { outcome: Answer }) {
       {!scalar && <ResultTable result={result} />}
 
       <FrameFooter className="flex-col items-start gap-2">
-        <div className="flex w-full flex-wrap items-center gap-2">
+        <div className="flex w-full flex-wrap items-center gap-3">
           <Disclosure label="Show the query" hideLabel="Hide the query">
             <div className="mt-3 space-y-2">
               {outcome.explanation && <Text role="caption">{outcome.explanation}</Text>}
               <Code>{outcome.sql}</Code>
             </div>
           </Disclosure>
+
+          {result.rows.length > 0 && (
+            <Button
+              tone="link"
+              size="sm"
+              onClick={() => download(result, outcome.question)}
+              title="Download these rows as CSV — generated in your browser"
+            >
+              Download CSV
+            </Button>
+          )}
+
           <Text as="span" role="caption" className="ml-auto">{outcome.model}</Text>
         </div>
 

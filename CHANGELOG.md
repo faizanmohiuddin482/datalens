@@ -38,6 +38,10 @@ rather than restate.
   dates and `N/A` in numeric columns.
 - **Offline mode** via Ollama, selected with one environment variable
   ([ADR 0005](docs/adr/0005-open-weight-model-behind-adapter.md)).
+- **Download any answer's rows as CSV.** The file is built in your browser, so
+  exporting sends nothing anywhere. Numbers are written unformatted so they stay
+  numbers when reopened, and the file carries a UTF-8 marker so Excel renders ₹
+  and accented names correctly.
 
 ### Security
 
@@ -49,6 +53,10 @@ rather than restate.
 - Uploaded data never leaves the browser. Only column names, types and the
   distinct values of small categorical columns are sent to the model
   ([ADR 0001](docs/adr/0001-sqlite-in-the-browser.md)).
+- CSV exports neutralise spreadsheet formula injection. A cell beginning with
+  `=`, `+`, `-` or `@` would otherwise execute when the downloaded file is
+  opened in Excel or Sheets — a live risk here, since cell contents come from
+  whatever file was uploaded.
 
 ### Fixed
 
