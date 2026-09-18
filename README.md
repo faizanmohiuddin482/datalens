@@ -1,7 +1,10 @@
 # DataLens
 
+**Live: https://datalens-ntnrxrxiq-mohammed-faizan-mohiuddins-projects.vercel.app**
+
 Upload CSV or Excel files, ask analytical questions in plain English, get an
-answer you can check.
+answer you can check. Open the link and click *Load sample HR data* — no signup,
+no files needed.
 
 > **The model decides what to compute. SQLite decides what the number is.**
 
@@ -116,6 +119,13 @@ vercel --prod
 Set `GROQ_API_KEY` in the project's environment. Nothing else is needed: the
 server holds no state, so there is no database, blob store or session layer to
 provision.
+
+The acceptance suite can be pointed at a deployment rather than localhost, which
+is how the live build above was verified:
+
+```bash
+BASE=https://your-deployment.vercel.app npm run test:acceptance
+```
 
 ## Project layout
 
