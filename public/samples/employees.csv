@@ -1,0 +1,103 @@
+Employee ID,Full Name,Department,Level,Location,Joining Date,Status
+DB1001,Daniel Kaur,Engineering,Senior Associate,Bengaluru,06/02/2023,Active
+DB1002,Manish Patel,Engineering,Associate,Bengaluru,15/09/2023,Active
+DB1003,Noah Menon,Engineering,Associate,Hyderabad,26/07/2020,Active
+DB1004,Ananya Iyer,Engineering,Senior Associate,Hyderabad,10/05/2021,Active
+DB1005,Nisha Sinha,Engineering,Senior Manager,Remote,03/08/2020,Active
+DB1006,Kavya Joshi,Engineering,Senior Associate,Bengaluru,23/12/2022,Exited
+DB1007,Ishita Reddy,Engineering,Associate,Hyderabad,15/10/2021,Active
+DB1008,Vikram Rao,Engineering,Manager,Bengaluru,23/12/2024,Active
+DB1009,Diya Joshi,Engineering,Associate,Hyderabad,21/01/2022,Active
+DB1010,Rohan Pillai,Engineering,Senior Associate,Hyderabad,23/03/2021,Active
+DB1011,Karan Nair,Engineering,Manager,Bengaluru,23/05/2023,Active
+DB1012,Diya Gupta,Engineering,Manager,Remote,16/07/2022,Active
+DB1013,Pooja Iyer,Engineering,Manager,Bengaluru,12/07/2023,Active
+DB1014,Diya Pillai,Engineering,Senior Associate,Bengaluru,31/10/2020,Active
+DB1015,Siddharth Menon,Engineering,Senior Associate,Hyderabad,28/12/2023,Exited
+DB1016,Noah Patel,Engineering,Director,Remote,28/10/2024,Active
+DB1017,Daniel Menon,Engineering,Associate,Hyderabad,06/12/2020,Active
+DB1018,Varun Kaur,Engineering,Senior Associate,Mumbai,13/11/2024,Exited
+DB1019,Siddharth Sharma,Engineering,Senior Associate,Hyderabad,05/01/2025,Active
+DB1020,Karan Khan,Engineering,Manager,Bengaluru,08/09/2022,Active
+DB1021,Daniel Khan,Engineering,Associate,Mumbai,19/05/2022,Active
+DB1022,Aarav Verma,Engineering,Senior Associate,Mumbai,28/06/2021,Active
+DB1023,Ishita Joshi,Engineering,Manager,Remote,15/01/2025,Active
+DB1024,Grace Reddy,Engineering,Senior Associate,Bengaluru,21/10/2022,Exited
+DB1025,Zara Pillai,Engineering,Associate,Mumbai,14/01/2025,Active
+DB1026,Arjun Pillai,Engineering,Associate,Hyderabad,19/09/2023,Active
+DB1027,Rohan Chopra,Engineering,Director,Bengaluru,13/09/2020,Active
+DB1028,Varun Kaur,Engineering,Senior Associate,Remote,09/04/2025,Active
+DB1029,Joseph Nair,Engineering,Director,Mumbai,25/08/2021,Active
+DB1030,Sneha Bose,Engineering,Associate,Bengaluru,17/08/2024,Active
+DB1031,Nisha Iyer,Engineering,Senior Associate,Remote,04/10/2022,Active
+DB1032,Zara Malhotra,Engineering,Associate,Hyderabad,26/10/2019,Active
+DB1033,Nisha Khan,Engineering,Associate,Remote,06/10/2024,Active
+DB1034,Nisha Verma,Engineering,Associate,Hyderabad,21/02/2023,Active
+DB1035,Aarav Reddy,Sales,Senior Associate,Remote,13/04/2021,Active
+DB1036,Karan Desai,Sales,Senior Associate,Bengaluru,13/07/2023,Active
+DB1037,Joseph Menon,Sales,Associate,Hyderabad,25/01/2023,Active
+DB1038,Leah Nair,Sales,Associate,Remote,25/12/2022,Active
+DB1039,Daniel Verma,Sales,Manager,Hyderabad,23/08/2021,Active
+DB1040,Aditya Menon,Sales,Senior Associate,Remote,06/09/2021,Active
+DB1041,Meera Pillai,Sales,Senior Associate,Hyderabad,26/05/2024,Exited
+DB1042,Sneha Malhotra,Sales,Associate,Hyderabad,28/05/2019,Active
+DB1043,Varun Reddy,Sales,Senior Associate,Mumbai,20/10/2024,Active
+DB1044,Karan Desai,Sales,Associate,Bengaluru,21/10/2019,Active
+DB1045,Siddharth Patel,Sales,Manager,Mumbai,04/03/2023,Active
+DB1046,Leah Nair,Sales,Director,Remote,10/04/2020,Active
+DB1047,Fatima Malhotra,Sales,Director,Hyderabad,24/05/2023,Active
+DB1048,Varun Khan,Sales,Manager,Mumbai,03/01/2022,Exited
+DB1049,Rahul Kaur,Sales,Associate,Hyderabad,15/05/2022,Active
+DB1050,Rahul Malhotra,Sales,Associate,Remote,29/08/2022,Active
+DB1051,Ananya Dutta,Sales,Associate,Mumbai,01/05/2022,Active
+DB1052,Varun Menon,Sales,Manager,Remote,23/09/2020,Active
+DB1053,Kavya Sinha,Sales,Manager,Bengaluru,10/04/2023,Active
+DB1054,Daniel Bose,Sales,Senior Associate,Remote,17/07/2023,Active
+DB1055,Samuel Menon,Sales,Senior Associate,Mumbai,14/05/2021,Active
+DB1056,Arjun Khan,Sales,Senior Associate,Hyderabad,25/11/2023,Active
+DB1057,Aditya Reddy,Marketing,Senior Manager,Bengaluru,21/01/2023,Active
+DB1058,Rahul Gupta,Marketing,Associate,Remote,19/08/2022,Active
+DB1059,Varun Malhotra,Marketing,Senior Associate,Remote,04/09/2021,Active
+DB1060,Siddharth Dutta,Marketing,Associate,Hyderabad,09/09/2024,Active
+DB1061,Arjun Menon,Marketing,Senior Associate,Hyderabad,22/06/2023,Exited
+DB1062,Karan Malhotra,Marketing,Associate,Bengaluru,26/09/2023,Active
+DB1063,Grace Dutta,Marketing,Associate,Hyderabad,23/02/2020,Active
+DB1064,Manish Menon,Marketing,Senior Associate,Hyderabad,01/01/2022,Active
+DB1065,Priya Menon,Marketing,Associate,Bengaluru,22/12/2022,Active
+DB1066,Diya Malhotra,Marketing,Director,Bengaluru,23/06/2024,Active
+DB1067,Rohan Shetty,Marketing,Senior Associate,Hyderabad,21/08/2019,Exited
+DB1068,Rahul Gupta,Marketing,Manager,Remote,18/03/2022,Active
+DB1069,Imran Chopra,People,Senior Associate,Hyderabad,15/04/2022,Active
+DB1070,Imran Reddy,People,Senior Manager,Mumbai,17/03/2024,Active
+DB1071,Sneha Khan,People,Associate,Hyderabad,03/06/2019,Exited
+DB1072,Ishita Gupta,People,Senior Associate,Bengaluru,24/12/2019,Active
+DB1073,Kavya Menon,People,Associate,Bengaluru,13/12/2023,Active
+DB1074,Imran Iyer,People,Manager,Bengaluru,02/03/2021,Active
+DB1075,Vikram Patel,People,Associate,Remote,14/12/2020,Active
+DB1076,Siddharth Verma,People,Associate,Mumbai,27/04/2024,Active
+DB1077,Imran Reddy,People,Manager,Bengaluru,08/10/2022,Exited
+DB1078,Diya Bose,People,Senior Manager,Hyderabad,21/05/2022,Active
+DB1079,Tara Bose,Finance,Manager,Mumbai,22/11/2022,Active
+DB1080,Aarav Rao,Finance,Associate,Remote,23/12/2024,Active
+DB1081,Fatima Malhotra,Finance,Manager,Hyderabad,14/03/2025,Active
+DB1082,Manish Rao,Finance,Senior Associate,Bengaluru,20/05/2019,Active
+DB1083,Grace Dutta,Finance,Associate,Hyderabad,14/12/2021,Active
+DB1084,Sneha Reddy,Finance,Senior Associate,Bengaluru,09/06/2021,Active
+DB1085,Meera Iyer,Finance,Senior Manager,Hyderabad,09/06/2022,Active
+DB1086,Rohan Chopra,Finance,Senior Associate,Remote,09/07/2024,Active
+DB1087,Rahul Pillai,Finance,Manager,Hyderabad,20/02/2020,Active
+DB1088,Karan Patel,Support,Senior Associate,Bengaluru,02/05/2019,Active
+DB1089,Grace Khan,Support,Manager,Mumbai,25/03/2021,Active
+DB1090,Zara Nair,Support,Associate,Remote,23/01/2023,Active
+DB1091,Nisha Chopra,Support,Associate,Remote,13/05/2022,Active
+DB1092,Karan Verma,Support,Associate,Remote,14/10/2021,Active
+DB1093,Karan Sharma,Support,Associate,Hyderabad,31/01/2025,Active
+DB1094,Aditya Sinha,Support,Manager,Bengaluru,21/04/2022,Active
+DB1095,Meera Patel,Support,Associate,Bengaluru,25/07/2023,Active
+DB1096,Ananya Sinha,Support,Associate,Bengaluru,31/05/2021,Active
+DB1097,Aarav Menon,Support,Associate,Hyderabad,13/08/2020,Active
+DB1098,Nisha Joshi,Support,Manager,Hyderabad,13/11/2021,Active
+DB1099,Samuel Chopra,Support,Associate,Bengaluru,22/05/2019,Exited
+DB1100,Varun Shetty,Support,Associate,Remote,21/08/2023,Active
+DB1101,Meera Sharma,Support,Director,Remote,05/07/2024,Active
+DB1102,Daniel Reddy,Support,Associate,Bengaluru,03/12/2020,Active
