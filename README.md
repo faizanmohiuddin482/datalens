@@ -96,6 +96,16 @@ natural-language-to-SQL produces a *confident wrong answer*:
 | A fluent answer to a question you didn't ask | The model may ask for clarification instead |
 | Arithmetic hallucination | Structurally impossible — the model never emits a figure |
 
+## Demo recording
+
+```bash
+npm run demo -- https://your-deployment.vercel.app ~/Desktop
+```
+
+Drives the real app in a real browser and records it, with a synthetic cursor so
+it reads as a walkthrough. No screen recorder, no desktop clutter, and it can be
+re-run after any change rather than re-filmed.
+
 ## Tests
 
 ```bash
