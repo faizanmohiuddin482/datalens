@@ -57,12 +57,31 @@ binary that 404'd, so SQLite never loaded at all.
 
 ## What I'd build next
 
-1. **Verification pass** — ask whether the result actually answers the question,
-   and flag empty results caused by a filter matching nothing.
-2. **Row-count sanity on joins** — warn when a join multiplies rows past the
-   larger input; catches the most damaging silent error.
-3. **Follow-up questions**, so "and by location?" works.
-4. **Per-column type overrides** — today one stray cell downgrades a column.
-5. **Web Worker ingest**, so large files don't jank the UI.
+**Close the remaining correctness gaps.** A verification pass — ask whether the
+result actually answers the question — and a row-count check that warns when a
+join multiplies rows past the larger input. That second one catches the most
+damaging silent error there is: a total that is wrong because the join was.
+
+**Answer differently depending on who is asking.** In an HR system this is the
+real problem. "Average salary by department" is a reasonable question from a CHRO
+and a data breach from a team lead. Filters would have to be applied to the query
+before execution, not to the result after, and the app would need to say *why* a
+number is scoped rather than silently narrowing it.
+
+**Point it at live systems instead of uploads.** Uploading an export is how you
+demo this; connecting to the system of record is how anyone uses it. The pipeline
+already separates profiling from querying, so a live schema and a warehouse
+connection slot into the same shape — the guard and the grounding do not change.
+
+**Move the engine server-side past the browser's ceiling.** In-browser SQLite is
+the right call for a single-session tool on files a person can upload, and the
+wrong one at millions of rows. That is a deliberate trade
+([ADR 0001](adr/0001-sqlite-in-the-browser.md)), and the privacy property it buys
+is worth keeping as long as possible — but the boundary between the model and the
+database is unchanged by the move, which is why it is a swap rather than a
+rewrite.
+
+**Then the smaller things:** follow-up questions so "and by location?" works,
+per-column type overrides, and moving ingest to a Web Worker.
 
 Seven ADRs in `docs/adr/` record each decision with its costs stated plainly.
